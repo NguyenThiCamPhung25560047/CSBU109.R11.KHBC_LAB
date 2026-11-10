@@ -1,0 +1,118 @@
+// Request handlers for Product API
+const Product = require('../models/product.model');
+
+// 1. GET /api/products - List products with filter & pagination
+exports.getAllProducts = async (req, res, next) => {
+  try {
+    const { category, minPrice, maxPrice } = req.query;
+
+    const page = Math.max(Number(req.query.page) || 1, 1);
+    const limit = Math.max(Number(req.query.limit) || 5, 1);
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+    if (category) {
+      filter.category = category;
+    }
+    if (minPrice || maxPrice) {
+      filter.price = {};
+      if (minPrice) filter.price.$gte = Number(minPrice);
+      if (maxPrice) filter.price.$lte = Number(maxPrice);
+    }
+
+    const totalProducts = await Product.countDocuments(filter);
+    const products = await Product.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(totalProducts / limit),
+        totalProducts
+      },
+      data: products
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// 2. GET /api/products/:id - Retrieve product by ID
+exports.getProductById = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'No product found with the given ID'
+      });
+    }
+    res.status(200).json({
+      success: true,
+      data: product
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// 3. POST /api/products - Create a new product
+exports.createProduct = async (req, res, next) => {
+  try {
+    const newProduct = await Product.create(req.body);
+    res.status(201).json({
+      success: true,
+      message: 'Product created successfully',
+      data: newProduct
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// 4. PUT /api/products/:id - Update product by ID
+exports.updateProduct = async (req, res, next) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!updatedProduct) {
+      return res.status(404).json({
+        success: false,
+        message: 'No product found to update'
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Product updated successfully',
+      data: updatedProduct
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// 5. DELETE /api/products/:id - Delete product by ID
+exports.deleteProduct = async (req, res, next) => {
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    if (!deletedProduct) {
+      return res.status(404).json({
+        success: false,
+        message: 'No product found to delete'
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Product deleted successfully'
+    });
+  } catch (error) {
+    next(error);
+  }
+};
