@@ -1,0 +1,133 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Nguyen Thi Cam Phung",
+      "age": 19,
+      "gender": "female",
+      "email": "camphungcapu@gmail.com",
+      "passwordHash": "$2b$10$Nb.ipAUc3rIv0EM69Wpbk.p5tw2zb5HzgaGCATrz79izkO6o3Px4.",
+      "avatarUrl": null,
+      "type": "normal"
+    },
+    {
+      "id": 2,
+      "fullName": "Normal User",
+      "age": 20,
+      "gender": "female",
+      "email": "user@gmail.com",
+      "passwordHash": "$2b$10$z3NkwfaxUjtf5VgMGoPlR.txuLGUXoe0Hr5jkCxznMJaB.UVVUUQe",
+      "avatarUrl": null,
+      "type": "normal"
+    },
+    {
+      "id": 3,
+      "fullName": "Normal User",
+      "age": 19,
+      "gender": "female",
+      "email": "normal@gmail.com",
+      "passwordHash": "$2b$10$6O2mFBrYzmNbez60Q33kBu4//uWI6qdmVCRr4XX9YcNj2hXhRohnC",
+      "avatarUrl": null,
+      "type": "normal"
+    },
+    {
+      "id": 4,
+      "fullName": "Admin",
+      "age": 19,
+      "gender": "female",
+      "email": "admin@gmail.com",
+      "passwordHash": "$2b$10$uM8ylmRNfbqIhuyrBVsu2euyO0g6mrM8Rrj3XViriUd4YYmJKWBNK",
+      "avatarUrl": null,
+      "type": "admin"
+    },
+    {
+      "id": 5,
+      "fullName": "Normal User",
+      "age": 19,
+      "gender": "female",
+      "email": "normaluser@gmail.com",
+      "passwordHash": "$2b$10$UaKszNYyqkpCNZZvOCF9J.Ge4WAMPfEheCpqpFMuxYcCDKeaXvFDC",
+      "avatarUrl": "/uploads/avatar-1795514948163-184663086.jpg",
+      "type": "normal"
+    },
+    {
+      "id": 6,
+      "fullName": "Admin",
+      "age": 19,
+      "gender": "female",
+      "email": "adminuser@gmail.com",
+      "passwordHash": "$2b$10$7U6qES3bYehhBFYVVVy.1.frDapNbP1cdF/3XH7LYkKTo/JA8eCfG",
+      "avatarUrl": null,
+      "type": "admin"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Beverage"
+    },
+    {
+      "id": 2,
+      "name": "Food"
+    },
+    {
+      "id": 3,
+      "name": "Fruit"
+    },
+    {
+      "id": 4,
+      "name": "Snacks & Drinks"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "name": "Pepsi",
+      "quantity": 45,
+      "price": 15000
+    },
+    {
+      "id": 2,
+      "categoryId": 2,
+      "name": "Meat",
+      "quantity": 5,
+      "price": 50000
+    },
+    {
+      "id": 3,
+      "categoryId": 2,
+      "name": "Egg",
+      "quantity": 20,
+      "price": 3000
+    },
+    {
+      "id": 4,
+      "categoryId": 1,
+      "name": "CocaCola",
+      "quantity": 35,
+      "price": 15000
+    },
+    {
+      "id": 5,
+      "categoryId": 1,
+      "name": "Lavie",
+      "quantity": 150,
+      "price": 8000
+    },
+    {
+      "id": 6,
+      "categoryId": 3,
+      "name": "Apple",
+      "quantity": 50,
+      "price": 10000
+    },
+    {
+      "id": 7,
+      "categoryId": 3,
+      "name": "Banana",
+      "quantity": 30,
+      "price": 5000
+    }
+  ]
+}

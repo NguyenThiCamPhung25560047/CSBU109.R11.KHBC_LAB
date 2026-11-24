@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Picture Upload & Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f5;
+      margin: 0;
+      padding: 40px;
+    }
+    .card {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    h2, h3 {
+      text-align: center;
+      color: #333;
+    }
+    .upload-area {
+      border: 2px dashed #6c5ce7;
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+      background: #f8f9fe;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .upload-area.dragover {
+      background: #e8e5fb;
+      border-color: #4834d4;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #6c5ce7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #5b4bc4;
+    }
+    .error-box {
+      display: none;
+      padding: 12px;
+      background: #ff7675;
+      color: white;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .success-box {
+      display: none;
+      padding: 12px;
+      background: #00b894;
+      color: white;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .gallery-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-actions {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 8px;
+    }
+    .link-btn {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .link-dl {
+      color: #0984e3;
+    }
+    .link-del {
+      color: #d63031;
+      cursor: pointer;
+    }
+    .link-del:hover {
+      text-decoration: underline;
+    }
+    .empty-msg {
+      text-align: center;
+      color: #888;
+      font-style: italic;
+      grid-column: 1 / -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Profile Picture</h2>
+    <div id="error-msg" class="error-box"></div>
+    <div id="success-msg" class="success-box"></div>
+    <form id="upload-form">
+      <div id="drop-zone" class="upload-area" onclick="document.getElementById('avatar-input').click()">
+        <p>Choose an image or drag & drop (JPG, PNG, WEBP, GIF up to 2MB)</p>
+        <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+        <span id="file-name" style="font-weight: bold; color: #6c5ce7;"></span>
+      </div>
+      <button type="submit" class="btn">Upload Avatar</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Uploaded Files Gallery</h3>
+    <div id="gallery" class="gallery"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
